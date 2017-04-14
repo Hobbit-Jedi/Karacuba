@@ -308,10 +308,10 @@ public class KaracubaTest {
 	 */
 	public static void contestKaracuba_vs_Shumers()
 	{
-		NumberKaracuba numX, numY, result;
+		NumberKaracuba numX, numY, resultKaracuba, resultShumers;
 		long timeStart, timeFinish, timeDeltaKaracuba, timeDeltaShumers;
 		
-		int numLen = 10000;
+		int numLen = 1000;
 		
 		System.out.println("-----------------------");
 		System.out.println("| Karacuba vs. Shumers ");
@@ -333,21 +333,30 @@ public class KaracubaTest {
 			
 			// Карацуба
 			timeStart = System.nanoTime();
-			result = numX.multiplicate(numY);
+			resultKaracuba = numX.multiplicate(numY);
 			timeFinish = System.nanoTime();
 			timeDeltaKaracuba = timeFinish - timeStart;
-			System.out.println("Karacuba X*Y = " + result);
+			System.out.println("Karacuba X*Y = " + resultKaracuba);
 			System.out.println("" + timeDeltaKaracuba + " наносекунд.");
 			
 			// Шумеры
 			timeStart = System.nanoTime();
-			result = numX.multiplicateShumer(numY);
+			resultShumers = numX.multiplicateShumer(numY);
 			timeFinish = System.nanoTime();
 			timeDeltaShumers = timeFinish - timeStart;
-			System.out.println("Shumers X*Y = " + result);
+			System.out.println("Shumers X*Y = " + resultShumers);
 			System.out.println("" + timeDeltaShumers + " наносекунд.");
 			
+			if (resultKaracuba.toString().equals(resultShumers.toString()))
+			{
+				System.out.println("OK");
+			}
+			else
+			{
+				System.out.println("!!! FAIL !!!");
+			}
 			System.out.println("Отношение Карацуба/Шумеры = " + (Double.valueOf(timeDeltaKaracuba)/Double.valueOf(timeDeltaShumers)) + " раз.");
+			
 		}
 		catch (Exception e)
 		{
