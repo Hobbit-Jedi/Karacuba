@@ -240,12 +240,13 @@ public class NumberKaracuba {
 		int lenY = other.length();
 		for (int i = lenY-1; i>=0; i--)
 		{
+			byte y = (byte)(other.mNumber.charAt(i) - '0');
+			if (y == 0) continue; // Все слагаемое будет нулевым - можно пропустить.
 			StringBuilder currentBuilder = new StringBuilder(lenX + 1);
 			byte carry = 0;
 			for (int j = lenX-1; j >= 0; j--)
 			{
 				byte x = (byte)(this.mNumber.charAt(j) - '0');
-				byte y = (byte)(other.mNumber.charAt(i) - '0');
 				int factum = x * y + carry;
 				currentBuilder.insert(0, (char)('0' + (byte)(factum % 10)));
 				carry = (byte)(factum / 10);
